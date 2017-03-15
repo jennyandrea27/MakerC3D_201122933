@@ -21,7 +21,6 @@ action code
 {://Codigo de acciones
       
 :}
-
 terminal String ID, ENTERO, DECIMAL;
 terminal TokenC3D MAS, MENOS, MULT, DIV, POT, PAR_IZQ, PAR_DER, IGUALACION, DIFERENTE, MAYOR, MENOR, MAYORIGUAL, MENORIGUAL, AND, OR, NOT;
 nonterminal NodoC3D inicial, expresion, cond, relacional,oprel, oplog;
@@ -84,8 +83,8 @@ expresion   ::= expresion:izq MAS expresion:der
                         ControlC3D.agregarC3D(c3d);
                         RESULT = new NodoC3D(temp); 
                     :}
-            |   PAR_IZQ expresion:exp PAR_DER   
-                    {: RESULT = exp; :}
+            |   PAR_IZQ cond:cond PAR_DER   
+                    {: RESULT = cond; :}
             |   ID:id           
                     {: RESULT = new NodoC3D(id); :}
             |   ENTERO:entero   
@@ -127,6 +126,7 @@ oprel::= IGUALACION{:RESULT=new NodoC3D("==");:}
             | MENOR{:RESULT=new NodoC3D("<");:}
             | MAYORIGUAL{:RESULT=new NodoC3D(">=");:}
             | MENORIGUAL{:RESULT=new NodoC3D("<=");:};
+
 
 
 
